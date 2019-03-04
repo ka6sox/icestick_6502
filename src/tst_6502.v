@@ -1,5 +1,6 @@
 // tst_6502.v - test 6502 core
-// 02-11-19 E. Brombaugh
+// 02-11-19 E. Brombaughi
+// 02-12-19 T. King
 
 module tst_6502(
     input clk,              // 4..0MHz CPU clock
