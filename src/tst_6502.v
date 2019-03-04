@@ -66,6 +66,22 @@ module tst_6502(
 		.irq(CPU_IRQ)			// interrupt request
 	);
 	
+	// SPI at page 40-4f
+	wire [7:0] spi_do;
+	spi uspi(
+		.clk(clk),				// system clock
+		.rst(reset),			// system reset
+		.cs(p4),				// chip select
+		.we(CPU_WE),			// write enable
+		.rs(CPU_AB[0]),			// register select
+		.rx(RX),				// serial receive
+		.din(CPU_DO),			// data bus input
+		.dout(spi_do),			// data bus output
+		.tx(TX),				// serial transmit
+		.irq(CPU_IRQ)			// interrupt request
+	);
+
+
 	// ROM @ pages f0,f1...
     reg [7:0] rom_mem[511:0];
 	reg [7:0] rom_do;
@@ -83,6 +99,7 @@ module tst_6502(
 			4'h0: CPU_DI = ram_do;
 			4'h1: CPU_DI = gpio_do;
 			4'h2: CPU_DI = acia_do;
+			4'h4; CPU_DI = spi_do
 			4'hf: CPU_DI = rom_do;
 			default: CPU_DI = rom_do;
 		endcase
