@@ -32,6 +32,7 @@ module tst_6502(
 	wire p0 = (CPU_AB[15:12] == 4'h0) ? 1 : 0;
 	wire p1 = (CPU_AB[15:12] == 4'h1) ? 1 : 0;
 	wire p2 = (CPU_AB[15:12] == 4'h2) ? 1 : 0;
+	wire p4 = (CPU_AB[15:12] == 4'h4) ? 1 : 0;
 	wire pf = (CPU_AB[15:12] == 4'hf) ? 1 : 0;
 	
 	// RAM @ pages 00,01...
